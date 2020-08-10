@@ -1,15 +1,23 @@
 :root {
   font-size: 60%;
 
-  --color-background: #DDDDDD;
-  --color-text: #555;
+  --color-background: #bdc3c7;
+  --color-text: #34495e;
   --color-box-background: #FEFEFE;
-  --color-hr: #333;
+  --color-hr: #2c3e50;
 
-  --color-table-border: #333;
-  --color-button: #04D361;
-  --color-button-dark: #04BF58;
-  --color-button-text: #FFFFFF;
+  --color-table-border: #2c3e50;
+
+  --color-button-edit: #3498db;
+  --color-button-edit-dark: #2980b9;
+
+  --color-button-delete: #e74c3c;
+  --color-button-delete-dark: #c0392b;
+
+  --color-button-save: #2ecc71;
+  --color-button-save-dark: #27ae60;
+
+  --color-button-text: #ecf0f1;
 }
 
 * {
@@ -84,6 +92,38 @@ table td {
   text-align: center;
 }
 
+table td .edit,
+table td .delete {
+  min-width: 7.5rem;
+  height: 2.5rem;
+  padding: 0.2rem 0.5rem;
+  
+  border: 0;
+  border-radius: 0.5rem;
+  outline: 0;
+  background-color: #f00;
+
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--color-button-text);
+}
+
+table td .edit {
+  background: var(--color-button-edit);
+}
+
+  table td .edit:hover {
+    background: var(--color-button-edit-dark);
+  }
+
+table td .delete {
+  background: var(--color-button-delete);
+}
+
+  table td .delete:hover {
+    background: var(--color-button-delete-dark);
+  }
+
 form {
   width: 100%;
 }
@@ -121,7 +161,7 @@ form button {
   
   border: 0;
   border-radius: 0.5rem;
-  background: var(--color-button);
+  background: var(--color-button-save);
   color: var(--color-button-text);
   outline: none;
   font-weight: bold;
@@ -130,5 +170,5 @@ form button {
 }
 
 form button:hover {
-  background: var(--color-button-dark);
+  background: var(--color-button-save-dark);
 }
