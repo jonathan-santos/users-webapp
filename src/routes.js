@@ -6,5 +6,6 @@ const routes = express.Router()
 
 routes.get('/api/users', usersController.index)
 routes.get('/api/users/:id', usersController.get)
+routes.post('/api/users', usersController.create)
 
 module.exports = routes

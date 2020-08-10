@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+
+  <link rel='stylesheet' href='./styles.css'>
+  <link rel='stylesheet' href='./new.css'>
+  <title>Webpage - new</title>
+</head>
+<body>
+  <main class='container'>
+    <h1>New User</h1>
+
+    <hr>
+
+    <nav>
+			<ul>
+				<li>
+					<a href='./'>Home</a>
+				</li>
+			</ul>
+    </nav>
+    
+    <hr>
+
+    <form>
+      <div class='field'>
+        <label for='name'>Name: </label>
+
+        <input
+          id='name'
+          name='name'
+          type='text'
+          placeholder='Type the user name'
+          required>
+      </div>
+
+      <div class='field'>
+        <label for='age'>Age: </label>
+
+        <input
+          id='age'
+          name='age'
+          type='number'
+          placeholder='Type the user age'
+          required
+          min='18'
+          max='150'
+        >
+      </div>
+
+      <hr>
+
+      <button type='submit'>Save</button>
+    </form>
+
+    <script src='./new.js'></script>
+  </main>
+</body>
+</html>

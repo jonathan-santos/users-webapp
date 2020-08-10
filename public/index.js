@@ -1,9 +1,7 @@
 const table = document.querySelector('table')
-const URL = 'http://localhost:3333'
-
 const getUsers = async () => {
   try {
-    const res = await fetch(URL + '/api/users')
+    const res = await fetch('/api/users')
     const users = await res.json()
     
     users.forEach(user => createTableRow(user))

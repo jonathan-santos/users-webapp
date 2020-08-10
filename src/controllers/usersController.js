@@ -5,18 +5,32 @@ const index = (req, res) => {
 }
 
 const get = (req, res) => {
-  const user = users.find(u => (
-    u.id === Number(req.params.id)
+  const userFound = users.find(user => (
+    user.id === parseInt(req.params.id)
   ))
 
-  if (!user) {
+  if (userFound) {
+    res.status(200).json(userFound)
+  } else {
     res.status(404).json('User not found')
   }
-  
-  res.status(200).json(user)
+}
+
+const create = (req, res) => {
+  const lastUser = users[users.length - 1]
+  const newUserId = lastUser ? lastUser.id + 1 : 0
+
+  users.push({
+    id: newUserId,
+    name: req.body.name,
+    age: req.body.age
+  })
+
+  res.sendStatus(201)
 }
 
 module.exports = {
   index,
-  get
+  get,
+  create
 }
