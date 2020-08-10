@@ -7,5 +7,7 @@ const routes = express.Router()
 routes.get('/api/users', usersController.index)
 routes.get('/api/users/:id', usersController.get)
 routes.post('/api/users', usersController.create)
+routes.put('/api/users/:id', usersController.update)
+routes.delete('/api/users/:id', usersController.remove)
 
 module.exports = routes

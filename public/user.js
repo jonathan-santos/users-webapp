@@ -41,7 +41,7 @@ const saveUser = async () => {
 
   try {
     if (userId) {
-      await updateUser()
+      await updateUser(user)
     } else {
       await saveNewUser(user)
     }
