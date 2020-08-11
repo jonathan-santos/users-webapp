@@ -1,4 +1,9 @@
-const table = document.querySelector('table')
+const tableBody = document.querySelector('table tbody')
+
+const onPageLoad = () => {
+  getUsers()
+  document.querySelector('#delete-all').addEventListener('click', deleteAllUsers)
+}
 
 const getUsers = async () => {
   try {
@@ -28,6 +33,22 @@ const deleteUser = async (user, button) => {
   }
 }
 
+const deleteAllUsers = async () => {
+  try {
+    const res = await fetch('/api/users', {
+      method: 'DELETE'
+    })
+
+    if (!res.ok) {
+      throw new Error
+    }
+    
+    tableBody.innerHTML = ''
+  } catch (error) {
+    alert('Could not delete all users')
+  }
+}
+
 const createTableRow = (user) => {
   const newRow = document.createElement('tr')
 
@@ -39,7 +60,7 @@ const createTableRow = (user) => {
   newRow.appendChild(createEditLink(user))
   newRow.appendChild(createDeleteButton(user))
 
-  table.appendChild(newRow)
+  tableBody.appendChild(newRow)
 }
 
 const createTableData = (value) => {
@@ -72,4 +93,4 @@ const createDeleteButton = (user) => {
   return newData
 }
 
-getUsers()
+onPageLoad()

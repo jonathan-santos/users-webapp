@@ -8,8 +8,8 @@
 
   --color-table-border: #2c3e50;
 
-  --color-button-edit: #3498db;
-  --color-button-edit-dark: #2980b9;
+  --color-button-user: #3498db;
+  --color-button-user-dark: #2980b9;
 
   --color-button-delete: #e74c3c;
   --color-button-delete-dark: #c0392b;
@@ -70,9 +70,51 @@ hr {
   background: var(--color-hr);
 }
 
-nav ul {
-  list-style-type: none;
+header {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
+
+header * {
+  height: 4rem;
+  padding: 0.5rem;
+  
+  border: 0;
+  border-radius: 0.5rem;
+  background: var(--color-button-save);
+  color: var(--color-button-text);
+  outline: none;
+  font-weight: bold;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  transition: background 0.2s;
+}
+
+header a {
+  margin-right: 1.6rem;
+
+  text-decoration: none;
+  background: var(--color-button-user);
+}
+
+  header a:hover {
+    background: var(--color-button-user-dark);
+  }
+
+header .delete {
+  background: var(--color-button-delete);
+}
+
+  header .delete:hover {
+    background: var(--color-button-delete-dark);
+  }
 
 table {
   width: 100%;
@@ -101,6 +143,7 @@ table td .delete {
   border-radius: 0.5rem;
   outline: 0;
   background-color: #f00;
+  cursor: pointer;
 
   font-weight: bold;
   text-decoration: none;
@@ -108,11 +151,11 @@ table td .delete {
 }
 
 table td .edit {
-  background: var(--color-button-edit);
+  background: var(--color-button-user);
 }
 
   table td .edit:hover {
-    background: var(--color-button-edit-dark);
+    background: var(--color-button-user-dark);
   }
 
 table td .delete {
@@ -164,6 +207,7 @@ form button {
   color: var(--color-button-text);
   outline: none;
   font-weight: bold;
+  cursor: pointer;
 
   transition: background 0.2s;
 }

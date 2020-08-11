@@ -52,10 +52,17 @@ const remove = async (req, res) => {
   res.sendStatus(204)
 }
 
+const clear = async (req, res) => {
+  await db.run('DELETE FROM users')
+
+  res.sendStatus(204)
+}
+
 module.exports = {
   index,
   get,
   create,
   update,
-  remove
+  remove,
+  clear
 }
