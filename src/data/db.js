@@ -13,7 +13,7 @@ const runDBOperation = (operation, sql, params) => {
       if (!error) {
         resolve(result)
       } else {
-        const errorMsg = `SQLITE3 ERROR running ${sql}: ${error}`
+        const errorMsg = `\nSQLITE3 ERROR running ${sql}: ${error}`
         console.error(errorMsg)
         reject(errorMsg)
       }

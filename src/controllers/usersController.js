@@ -1,13 +1,14 @@
-const { users } = require('../data/mock')
+const db = require('../data/db')
 
-const index = (req, res) => {
+const index = async (req, res) => {
+  const users = await db.all('SELECT * FROM users')
   res.status(200).json(users)
 }
 
-const get = (req, res) => {
-  const userFound = users.find(user => (
-    user.id === parseInt(req.params.id)
-  ))
+const get = async (req, res) => {
+  const userFound = await db.get('SELECT * FROM users WHERE id = ?', [
+    req.params.id
+  ])
 
   if (userFound) {
     res.status(200).json(userFound)
@@ -17,30 +18,25 @@ const get = (req, res) => {
 }
 
 const create = (req, res) => {
-  const lastUser = users[users.length - 1]
-  const newUserId = lastUser ? lastUser.id + 1 : 0
-
-  users.push({
-    id: newUserId,
-    name: req.body.name,
-    age: req.body.age
-  })
+  db.run('INSERT INTO users(name, age) VALUES(?, ?)', [
+    req.body.name,
+    req.body.age
+  ])
 
   res.sendStatus(201)
 }
 
-const update = (req, res) => {
-  const foundUser = users.find(user => user.id === parseInt(req.params.id))
+const update = async (req, res) => {
+  const foundUser = await db.get('SELECT * FROM users WHERE id = ?', [
+    req.params.id
+  ])
   
   if (foundUser) {
-    const updatedUser  = {
-      id: foundUser.id,
-      name: req.body.name,
-      age: req.body.age
-    }
-
-    const foundUserIndex = users.findIndex(user => user.id === parseInt(req.params.id))
-    users.splice(foundUserIndex, 1, updatedUser)
+    await db.run('UPDATE users SET name = ?, age = ? WHERE id = ?', [
+      req.body.name,
+      req.body.age,
+      req.params.id
+    ])
 
     res.sendStatus(204)
   } else {
@@ -48,12 +44,12 @@ const update = (req, res) => {
   }
 }
 
-const remove = (req, res) => {
-  const userIndex = users.findIndex(user => user.id === parseInt(req.params.id))
+const remove = async (req, res) => {
+  await db.run('DELETE FROM users WHERE id = ?', [
+    req.params.id
+  ])
 
-  users.splice(userIndex, 1)
-
-  res.sendStatus(201)
+  res.sendStatus(204)
 }
 
 module.exports = {

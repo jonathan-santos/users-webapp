@@ -40,19 +40,29 @@ const saveUser = async () => {
   }
 
   try {
+    let res
+
     if (userId) {
-      await updateUser(user)
+      res = await updateUser(user)
     } else {
-      await saveNewUser(user)
+      res = await saveNewUser(user)
     }
+
+    if (!res.ok) {
+      const action = userId ? 'updating' : 'saving new'
+      alert(`There\'s been an error ${action} user`)
+      return
+    }
+
+    window.location.href = './'
   } catch (error) {
     const action = userId ? 'update' : 'save'
     alert(`Could not ${action} the user`)
   }
 }
 
-const updateUser = async (user) => {
-  const res = await fetch('/api/users/' + userId, {
+const updateUser = (user) => (
+  fetch('/api/users/' + userId, {
     method: 'PUT',
     headers: {
       'Accept': 'application/json',
@@ -60,17 +70,11 @@ const updateUser = async (user) => {
     },
     body: JSON.stringify(user)
   })
-
-  if (!res.ok) {
-    throw new Error
-  }
-
-  alert('User successfully updated')
-}
+)
 
 
-const saveNewUser = async (user) => {
-  const res = await fetch('/api/users', {
+const saveNewUser = (user) => (
+  fetch('/api/users', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -78,12 +82,6 @@ const saveNewUser = async (user) => {
     },
     body: JSON.stringify(user)
   })
-
-  if (!res.ok) {
-    throw new Error
-  }
-
-  window.location.href = './'
-}
+)
 
 onPageLoad()
