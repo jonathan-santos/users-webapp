@@ -3,7 +3,8 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server",
-    "migrate": "node server/data/migrations"
+    "migrate": "node server/data/migrations",
+    "build": "npm run migrate"
   },
   "dependencies": {
     "cors": "^2.8.5",
