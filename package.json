@@ -1,8 +1,8 @@
 {
   "main": "server.js",
   "scripts": {
-    "start": "nodemon ./src/server.js",
-    "migrate": "node ./src/data/migrations/run.js"
+    "start": "nodemon server",
+    "migrate": "node server/data/migrations"
   },
   "dependencies": {
     "cors": "^2.8.5",
